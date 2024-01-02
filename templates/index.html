@@ -152,8 +152,13 @@
             document.getElementById('prediction').innerHTML="Wait! Predicting Price.....";
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == XMLHttpRequest.DONE){
-                    document.getElementById('prediction').innerHTML="Prediction: ₹"+xhr.responseText;
-    
+
+                    if (xhr.responseText == "ValueError") {
+                        document.getElementById('prediction').innerHTML="Please fill all the fields";
+                    }
+                    else {
+                        document.getElementById('prediction').innerHTML="Prediction: ₹"+xhr.responseText;
+                    }
                 }
             };
     
